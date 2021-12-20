@@ -1,6 +1,8 @@
 package com.redhat.teste;
 
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Date;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -19,8 +21,30 @@ public class UserBean implements Serializable {
     protected String sex = "Unknown";
     protected String email;
     protected String serviceLevel = "medium";
+    protected String hostname;
     
-    public UserBean() {}
+    
+    
+    
+    
+    public String getHostname() {
+    	
+    	try {
+			hostname = InetAddress.getLocalHost().getHostName();
+			
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		return hostname;
+	}
+
+	public void setHostname(String hostname) {
+		this.hostname = hostname;
+	}
+
+	public UserBean() {}
 
     public String getFirstName() {
         return firstName;
